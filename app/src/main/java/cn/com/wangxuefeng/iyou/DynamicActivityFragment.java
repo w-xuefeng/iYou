@@ -11,15 +11,11 @@ import android.view.ViewGroup;
  */
 public class DynamicActivityFragment extends Fragment {
 
-    private Dynamic mDynamic;
-
     public DynamicActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        DynamicDataGet getData = new DynamicDataGet();
-//        getData.getDynamicData(0);
         return inflater.inflate(R.layout.fragment_dynamic, container, false);
     }
 }
