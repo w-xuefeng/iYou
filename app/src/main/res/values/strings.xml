@@ -2,4 +2,12 @@
     <string name="app_name">iYou</string>
     <string name="action_settings">Settings</string>
     <string name="get_intent_error">网络错误</string>
+
+
+
+    <!-- contentDescription -->
+    <string name="c_d_dynamic_head">动态发布者的头像</string>
+    <string name="c_d_dynamic_name">动态发布者的名字</string>
+    <string name="c_d_dynamic_time">动态发布的时间</string>
+    <string name="c_d_dynamic_content">动态的内容</string>
 </resources>
