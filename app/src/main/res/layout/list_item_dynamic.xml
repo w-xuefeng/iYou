@@ -2,12 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <!--<data>-->
-        <!--<variable-->
-            <!--name="viewModel"-->
-            <!--type="cn.com.wangxuefeng.iyou.DynamicViewModel"/>-->
-    <!--</data>-->
     <android.support.v7.widget.CardView
+        android:id="@+id/dynamic_card"
         app:cardCornerRadius="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,15 +17,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal" >
-
-                <ImageView
+                <com.szysky.customize.siv.SImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/publish_head"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="15dp"
-                    android:gravity="center"
-                    android:contentDescription="@string/c_d_dynamic_head"
-                    android:src="@drawable/default_head" />
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:img="@drawable/default_head"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/c_d_dynamic_head"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -41,8 +37,7 @@
                         android:gravity="center_vertical"
                         android:contentDescription="@string/c_d_dynamic_name"
                         android:text="@string/c_d_dynamic_name"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
                     <TextView
                         android:id="@+id/publish_time"
                         android:layout_width="match_parent"
@@ -51,7 +46,7 @@
                         android:contentDescription="@string/c_d_dynamic_time"
                         android:text="@string/c_d_dynamic_time"
                         android:textColor="#AEAEAE"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -74,7 +69,7 @@
                 android:orientation="horizontal" >
                 <com.hedan.textdrawablelibrary.TextViewDrawable
                     android:id="@+id/dynamic_view_count"
-                    android:drawableLeft="@drawable/view_count_hot"
+                    android:drawableStart="@drawable/view_count_hot"
                     android:drawablePadding="5dp"
                     app:drawableLeftWidth="15dp"
                     app:drawableLeftHeight="15dp"
@@ -105,7 +100,7 @@
                 android:orientation="horizontal" >
                 <com.hedan.textdrawablelibrary.TextViewDrawable
                     android:id="@+id/dynamic_liker"
-                    android:drawableLeft="@drawable/ic_thumb_button_outline"
+                    android:drawableStart="@drawable/ic_thumb_button_outline"
                     app:drawableLeftWidth="15dp"
                     app:drawableLeftHeight="15dp"
                     android:drawablePadding="5dp"

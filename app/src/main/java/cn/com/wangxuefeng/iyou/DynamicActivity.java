@@ -5,12 +5,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.List;
 
 public class DynamicActivity extends AppCompatActivity {
 
@@ -20,15 +17,6 @@ public class DynamicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dynamic);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DynamicDataGet.getDynamicData(0, this, new DynamicGetCallbackListener() {
-            @Override
-            public void handle(List<Dynamic> dynamicList) {
-            for (int i = 0; i < dynamicList.size(); i ++) {
-                Log.i("content" + i, dynamicList.get(i).getLiker().get(0).getName());
-            }
-            }
-        });
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
