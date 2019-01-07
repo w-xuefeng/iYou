@@ -1,4 +1,4 @@
-package cn.com.wangxuefeng.iyou;
+package cn.com.wangxuefeng.iyou.view;
 
 import android.app.Application;
 import com.lzy.okgo.OkGo;

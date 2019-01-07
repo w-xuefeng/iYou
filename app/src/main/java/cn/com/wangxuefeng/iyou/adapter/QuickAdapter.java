@@ -1,4 +1,4 @@
-package cn.com.wangxuefeng.iyou;
+package cn.com.wangxuefeng.iyou.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +34,7 @@ public abstract class QuickAdapter<T> extends RecyclerView.Adapter<QuickAdapter.
 
     public abstract void convert(VH holder, T data, int position);
 
-    static class VH extends RecyclerView.ViewHolder{
+    public static class VH extends RecyclerView.ViewHolder{
         private SparseArray<View> mViews;
         private View mConvertView;
 

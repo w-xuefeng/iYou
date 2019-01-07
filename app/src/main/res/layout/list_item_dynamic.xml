@@ -7,7 +7,10 @@
         app:cardCornerRadius="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,13 +57,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical" >
-                <TextView
+                <org.sufficientlysecure.htmltextview.HtmlTextView
                     android:id="@+id/dynamic_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/c_d_dynamic_content"
-                    android:text="@string/c_d_dynamic_content"
-                    android:textSize="18sp" />
+                    android:textAppearance="@android:style/TextAppearance.Small" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
