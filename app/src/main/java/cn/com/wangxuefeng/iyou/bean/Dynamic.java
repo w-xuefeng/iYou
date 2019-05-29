@@ -7,6 +7,7 @@ public class Dynamic {
     private User author;
     private String publishTime;
     private String textContent;
+    private String htmlContent;
     private List<String> imgs;
     private List<User> liker;
     private long viewCount;
@@ -14,11 +15,12 @@ public class Dynamic {
     public Dynamic() {
     }
 
-    public Dynamic(int id, User author, String publishTime, String textContent, List<String> imgs, List<User> liker, long viewCount) {
+    public Dynamic(int id, User author, String publishTime, String textContent, String htmlContent, List<String> imgs, List<User> liker, long viewCount) {
         this.id = id;
         this.author = author;
         this.publishTime = publishTime;
         this.textContent = textContent;
+        this.htmlContent = htmlContent;
         this.imgs = imgs;
         this.liker = liker;
         this.viewCount = viewCount;
@@ -78,5 +80,12 @@ public class Dynamic {
 
     public void setViewCount(long viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
+    }
+    public String getHtmlContent() {
+        return htmlContent;
     }
 }

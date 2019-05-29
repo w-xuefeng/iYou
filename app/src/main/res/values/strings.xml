@@ -5,7 +5,7 @@
     <string name="refresh_finish">刷新完成惹 (●\'◡\'●)</string>
     <string name="not_any_more">(・-・*) 已经到尽头惹</string>
     <string name="load_finished">加载完成啦2333</string>
-
+    <string name="more">...</string>
 
     <!-- contentDescription -->
     <string name="c_d_dynamic_head">动态发布者的头像</string>
@@ -17,4 +17,25 @@
     <string name="c_d_dynamic_thumb_liker">点赞的人</string>
     <string name="c_d_dynamic_comment_button">评论</string>
     <string name="title_activity_web_view">WebViewActivity</string>
+
+    <!-- VOD contentDescription -->
+    <string name="c_d_vod_head">视频海报</string>
+    <string name="c_d_vod_name">视频名称</string>
+    <string name="c_d_vod_timelength">视频时长</string>
+    <string name="c_d_vod_introduce">视频简介</string>
+    <string name="c_d_vod_viewcount">播放量</string>
+    <string name="vod_list_no_introduce">暂无简介</string>
+
+
+    <!-- publicDynamicPage -->
+    <string name="menu_dynamic_pub">发表</string>
+    <string name="placeholder_dynamic_pub">此刻的小可爱正在干什么呢(●\'◡\'●)</string>
+
+
+    <!-- Vod Error -->
+    <string name="err_vod_req">请求出错</string>
+    <string name="err_vod_UnsupportedEncoding">编码出错</string>
+    <string name="err_vod_CookieUnavailable">Cookie不可用</string>
+    <string name="err_vod_NotCookie">获取Cookie失败</string>
+    <string name="QuestionMark">\?</string>
 </resources>

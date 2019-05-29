@@ -22,10 +22,6 @@ import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.szysky.customize.siv.SImageView;
-
-import org.sufficientlysecure.htmltextview.ClickableTableSpan;
-import org.sufficientlysecure.htmltextview.DrawTableLinkSpan;
-import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import java.util.ArrayList;
@@ -51,19 +47,6 @@ public class DynamicActivityFragment extends Fragment {
     public DynamicActivityFragment() {
 
     }
-    class ClickableTableSpanImpl extends ClickableTableSpan {
-        @Override
-        public ClickableTableSpan newInstance() {
-            return new ClickableTableSpanImpl();
-        }
-
-        @Override
-        public void onClick(View widget) {
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra(EXTRA_HTML, getTableHtml());
-            startActivity(intent);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +55,7 @@ public class DynamicActivityFragment extends Fragment {
         RefreshLayout refreshLayout = mView.findViewById(R.id.refreshLayout);
         refreshLayout.setRefreshHeader(new DeliveryHeader(mView.getContext()));
         refreshLayout.setRefreshFooter(new BallPulseFooter(mView.getContext()).setSpinnerStyle(SpinnerStyle.Scale));
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(final RefreshLayout refreshlayout) {
@@ -80,7 +64,7 @@ public class DynamicActivityFragment extends Fragment {
                     @Override
                     public void dataFinished(List data) {
                         Toast.makeText(mView.getContext(), R.string.refresh_finish, Toast.LENGTH_SHORT).show();
-                        refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                        refreshlayout.finishRefresh(0/*,false*/);//传入false表示刷新失败
                     }
                 });
             }
@@ -96,7 +80,7 @@ public class DynamicActivityFragment extends Fragment {
                         } else {
                             Toast.makeText(mView.getContext(), R.string.load_finished, Toast.LENGTH_SHORT).show();
                         }
-                        refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+                        refreshlayout.finishLoadMore(0/*,false*/);//传入false表示加载失败
                     }
                 });
             }
@@ -115,7 +99,7 @@ public class DynamicActivityFragment extends Fragment {
             }
 
             @Override
-            public void convert(VH holder, Dynamic data, int position) {
+            public void convert(VH holder, final Dynamic data, int position) {
                 SImageView head = holder.getView(R.id.publish_head);
                 TextView pub_name = holder.getView(R.id.publish_name);
                 TextView pub_time = holder.getView(R.id.publish_time);
@@ -129,18 +113,21 @@ public class DynamicActivityFragment extends Fragment {
                 view_count.setText(getHotViewCountString(data.getViewCount()));
                 liker.setText(getLikerPeople(data.getLiker()));
 
-                dynamicContent.setClickableTableSpan(new ClickableTableSpanImpl());
-                DrawTableLinkSpan drawTableLinkSpan = new DrawTableLinkSpan();
-                drawTableLinkSpan.setTableLinkText("[tap for table]");
-                dynamicContent.setDrawTableLinkSpan(drawTableLinkSpan);
-
                 // Best to use indentation that matches screen density.
                 DisplayMetrics metrics = new DisplayMetrics();
                 getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
                 dynamicContent.setListIndentPx(metrics.density * 10);
                 dynamicContent.setMovementMethod(ScrollingMovementMethod.getInstance()); // 设置可滚动
                 dynamicContent.setMovementMethod(LinkMovementMethod.getInstance()); //设置超链接可以打开网页
-                dynamicContent.setHtml(data.getTextContent(), new HtmlHttpImageGetter(dynamicContent, null, true));
+                dynamicContent.setHtml(data.getTextContent());
+                dynamicContent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra(EXTRA_HTML, data.getHtmlContent());
+                        startActivity(intent);
+                    }
+                });
             }
         };
         getDynamicData(page, mView, null);
@@ -152,10 +139,12 @@ public class DynamicActivityFragment extends Fragment {
     }
 
     public String getLikerPeople (List<User> liker) {
+        int maxDisplayLiker = 5;
+        int limit = liker.size() > maxDisplayLiker ? maxDisplayLiker : liker.size();
         StringBuilder a = new StringBuilder();
         String temp;
-        for(int i = 0; i < liker.size(); i++){
-            temp = liker.get(i).getName() + (i == liker.size() - 1 ? "觉得很赞" : "，");
+        for(int i = 0; i < limit; i++){
+            temp = liker.get(i).getName() + (i == limit - 1 ? ((liker.size() > maxDisplayLiker ? "等" + liker.size() + "人" : "") + "觉得很赞") : "，");
             a.append(temp);
         }
         return a.toString();

@@ -11,8 +11,8 @@ import java.util.List;
 
 public abstract class QuickAdapter<T> extends RecyclerView.Adapter<QuickAdapter.VH>{
     private List<T> mDatas;
-    public QuickAdapter(List<T> datas){
-        this.mDatas = datas;
+    public QuickAdapter(List<T> data){
+        this.mDatas = data;
     }
 
     public abstract int getLayoutId(int viewType);

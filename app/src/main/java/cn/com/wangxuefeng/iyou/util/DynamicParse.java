@@ -3,6 +3,8 @@ package cn.com.wangxuefeng.iyou.util;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,9 @@ public class DynamicParse {
                 int id = currentDynamic.getInt(DYNAMIC_ID);
                 User author = new User(currentDynamic.getString(PUBLISH_ID), currentDynamic.getString(PUBLISHER), BASE_URL + currentDynamic.getString(HEAD));
                 String publisherTime = currentDynamic.getString(PUBLISH_DATE);
-                String textContent = currentDynamic.getString(DYNAMIC_CONTENT);
+                String htmlContent = currentDynamic.getString(DYNAMIC_CONTENT);
+                Document doc = Jsoup.parse(htmlContent);
+                String textContent = doc.getElementById("TextContent").html();
                 long viewCount = currentDynamic.getLong(VIEW_COUNT);
                 List<String> imgArray = new ArrayList<>();
                 JSONArray imgUrl = currentDynamic.getJSONArray(DYNAMIC_IMG);
@@ -51,7 +55,7 @@ public class DynamicParse {
                         liker.add(new User(currentLiker.getString(LINKER_ID), currentLiker.getString(LINKER_NAME), BASE_URL + currentLiker.getString(HEAD)));
                     }
                 }
-                dynamicList.add(new Dynamic(id, author, publisherTime, textContent, imgArray, liker, viewCount));
+                dynamicList.add(new Dynamic(id, author, publisherTime, textContent, htmlContent, imgArray, liker, viewCount));
             }
         }catch (JSONException e){
             e.printStackTrace();
