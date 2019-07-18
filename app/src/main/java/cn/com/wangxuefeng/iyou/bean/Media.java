@@ -1,6 +1,10 @@
 package cn.com.wangxuefeng.iyou.bean;
 
-public class Media {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Media implements Serializable {
     private long pid;
     private long sid = 1;
     private long cid = 0;
@@ -23,6 +27,8 @@ public class Media {
     private String introduction;  // 内容介绍
 
     private String cover;  // 视频海报
+
+    private List<MediaSp> videoSp = new ArrayList<>(); // 视频分集
 
     public Media() {
     }
@@ -194,5 +200,13 @@ public class Media {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public List<MediaSp> getVideoSp() {
+        return videoSp;
+    }
+
+    public void setVideoSp(List<MediaSp> videoSp) {
+        this.videoSp = videoSp;
     }
 }

@@ -12,7 +12,7 @@ import cn.com.wangxuefeng.iyou.R;
 
 public class DynamicDataGet {
     public static void getDynamicData(int page, final Context context, final DynamicCallback callback) {
-        OkGo.<String>get(Config.DYNAMIC_URL).params("page",page).tag(context).execute(new StringCallback() {
+        OkGo.<String>get(Config.API(Config.DYNAMIC_URL)).params("page",page).tag(context).execute(new StringCallback() {
             @Override
             public void onSuccess(Response<String> response) {
                 callback.handleDynamic((new DynamicParse()).parse(response.body()));

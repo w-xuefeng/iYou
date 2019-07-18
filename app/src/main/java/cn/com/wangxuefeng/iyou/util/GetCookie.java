@@ -26,7 +26,7 @@ public class GetCookie {
         int code = response.code();
         if (code == 200) {
             ResponseBody body = response.body();
-            Headers headers=response.headers();
+            Headers headers = response.headers();
             List<String> cookies = headers.values("Set-Cookie");
             String []defaultCookie = cookies.get(0).split(";")[0].split("=");
             Log.i("Cookie", cookies.get(0).split(";")[0]);
@@ -37,7 +37,7 @@ public class GetCookie {
         return null;
     }
 
-    public static void linkCookie(String linkPath, String cookieName,String cookie) throws IOException {
+    public static void linkCookie(String linkPath, String cookieName, String cookie) throws IOException {
         Document document = Jsoup.connect(linkPath).cookie(cookieName, cookie).get();
     }
 }

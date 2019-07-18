@@ -2,8 +2,11 @@ package cn.com.wangxuefeng.iyou.util;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +17,7 @@ import java.util.Map;
 
 import cn.com.wangxuefeng.iyou.R;
 import cn.com.wangxuefeng.iyou.bean.Media;
+import cn.com.wangxuefeng.iyou.bean.MediaSp;
 
 public class GetMediaInfor extends AsyncTask<Object, Integer, List<List<Object>>> {
 
@@ -144,6 +148,21 @@ public class GetMediaInfor extends AsyncTask<Object, Integer, List<List<Object>>
                     .get(VODConfig.IntroductionValueIndex)
                     .text()
                     .getBytes(document.charset()), VODConfig.InforValueCharset));
+            Elements videoSp = document.select(VODConfig.PSelectCSSSelector).select("option");
+            if(videoSp.size() > 0){
+                Log.i("VideoSP", videoSp.size() + "");
+                List<MediaSp> sp = new ArrayList<>();
+                for (int i = 0; i < videoSp.size(); i++){
+                    sp.add(
+                            new MediaSp(
+                                    new String(videoSp.get(i).text().getBytes(document.charset()),VODConfig.InforValueCharset),
+                                    Integer.parseInt(new String(videoSp.get(i).attr("value").getBytes(document.charset()),VODConfig.InforValueCharset))
+                            )
+                    );
+                    Log.i("VideoSPName", sp.get(i).getName());
+                    Log.i("VideoSPValue", sp.get(i).getValue() + "");
+                }
+            }
         } catch (IOException | IndexOutOfBoundsException e) {
             e.printStackTrace();
             List<Object> error = new ArrayList<>();

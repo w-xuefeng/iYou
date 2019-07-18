@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".view.VideoPlayerActivity">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vod_player"
+            android:height="200dp"
+            android:background="@color/color_black"
+            android:gravity="center"
+            android:text="@string/menu_vod"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="20dp"
+            android:textSize="50sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <com.szysky.customize.siv.SImageView
+                android:id="@+id/vod_play_img"
+                android:layout_width="90dp"
+                android:layout_height="140dp"
+                android:layout_gravity="top"
+                android:layout_marginEnd="20dp"
+                app:img="@drawable/default_vod"
+                app:displayType="rect"
+                app:border_width="0dp"
+                app:scaleType="fix_XY"
+                android:contentDescription="@string/c_d_vod_head"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="top"
+                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/vod_play_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:contentDescription="@string/c_d_vod_name"
+                    android:text="@string/c_d_vod_name"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/vod_play_timelength"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:contentDescription="@string/c_d_vod_timelength"
+                    android:text="@string/c_d_vod_timelength"
+                    android:textColor="#AEAEAE"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/vod_play_viewcount"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
+                    android:contentDescription="@string/c_d_vod_viewcount"
+                    android:text="@string/c_d_vod_viewcount"
+                    android:textColor="#AEAEAE"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/vod_play_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:contentDescription="@string/c_d_vod_introduce"
+                    android:text="@string/c_d_vod_introduce"
+                    android:textColor="#AEAEAE"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
+
