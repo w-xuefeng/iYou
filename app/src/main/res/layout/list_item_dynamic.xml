@@ -54,7 +54,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical" >
                 <org.sufficientlysecure.htmltextview.HtmlTextView
@@ -63,6 +63,21 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/c_d_dynamic_content"
                     android:textAppearance="@android:style/TextAppearance.Small" />
+                <cn.lemon.multi.MultiView
+                    android:id="@+id/dynamic_content_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_transparent_10white"
+                    android:contentDescription="@string/c_d_dynamic_img"
+                    app:divideSpace="8dp"
+                    app:placeholder="@drawable/default_img" />
+
+                <WebView
+                    android:id="@+id/dynamic_content_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:contentDescription="@string/c_d_dynamic_video" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

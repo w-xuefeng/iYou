@@ -48,6 +48,9 @@
             android:name=".view.WebViewActivity"
             android:label="@string/title_activity_web_view"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="cn.lemon.multi.ui.ViewImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

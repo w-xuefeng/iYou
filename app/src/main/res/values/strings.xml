@@ -15,6 +15,8 @@
     <string name="c_d_dynamic_name">动态发布者的名字</string>
     <string name="c_d_dynamic_time">动态发布的时间</string>
     <string name="c_d_dynamic_content">动态的内容</string>
+    <string name="c_d_dynamic_img">动态内容中包含的图片</string>
+    <string name="c_d_dynamic_video">动态内容中包含的视频</string>
     <string name="c_d_dynamic_view_count">动态的浏览量</string>
     <string name="c_d_dynamic_thumb_button">点赞</string>
     <string name="c_d_dynamic_thumb_liker">点赞的人</string>

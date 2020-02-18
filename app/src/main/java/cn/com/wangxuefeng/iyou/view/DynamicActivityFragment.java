@@ -1,6 +1,7 @@
 package cn.com.wangxuefeng.iyou.view;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,9 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +38,8 @@ import cn.com.wangxuefeng.iyou.bean.User;
 import cn.com.wangxuefeng.iyou.util.DynamicCallback;
 import cn.com.wangxuefeng.iyou.util.DynamicDataGet;
 import cn.com.wangxuefeng.iyou.util.GetDataCallback;
+import cn.lemon.multi.MultiView;
+import cn.lemon.multi.adapter.MultiAdapter;
 
 import static cn.com.wangxuefeng.iyou.view.WebViewActivity.EXTRA_HTML;
 
@@ -104,15 +110,39 @@ public class DynamicActivityFragment extends Fragment {
                 TextView pub_name = holder.getView(R.id.publish_name);
                 TextView pub_time = holder.getView(R.id.publish_time);
                 HtmlTextView dynamicContent = holder.getView(R.id.dynamic_content);
+                MultiView multiView = holder.getView(R.id.dynamic_content_img);
                 TextView view_count = holder.getView(R.id.dynamic_view_count);
                 TextView liker = holder.getView(R.id.dynamic_liker);
+                String videoUrl = data.getVideoUrl();
+                WebView webView = holder.getView(R.id.dynamic_content_video);
 
                 head.setErrPicResID(R.drawable.default_head).setLoadingResID(R.drawable.default_head).setImageUrls(data.getAuthor().getHead());
                 pub_name.setText(data.getAuthor().getName());
                 pub_time.setText(data.getPublishTime());
                 view_count.setText(getHotViewCountString(data.getViewCount()));
-                liker.setText(getLikerPeople(data.getLiker()));
-
+                if (data.getLiker().size() == 0) {
+                    liker.setVisibility(View.GONE);
+                } else {
+                    liker.setVisibility(View.VISIBLE);
+                    liker.setText(getLikerPeople(data.getLiker()));
+                }
+                multiView.clear();
+                multiView.setImages(data.getImgs());
+                if (videoUrl != null && !videoUrl.equals("")) {
+                    videoUrl = videoUrl.substring(0,4).equals("//") ? "https:" + videoUrl : videoUrl;
+                    System.out.println(videoUrl);
+                    WebSettings webSettings = webView.getSettings();
+                    webSettings.setJavaScriptEnabled(true);
+                    webSettings.setAllowFileAccess(true);
+                    webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+                    webSettings.setLoadsImagesAutomatically(true);
+                    webSettings.setDefaultTextEncodingName("utf-8");
+                    webView.setWebViewClient(new WebViewClient());
+                    webView.loadUrl(videoUrl);
+                    webView.setVisibility(View.VISIBLE);
+                } else {
+                    webView.setVisibility(View.GONE);
+                }
                 // Best to use indentation that matches screen density.
                 DisplayMetrics metrics = new DisplayMetrics();
                 getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);

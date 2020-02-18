@@ -5,6 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,13 @@ public class DynamicParse {
                 User author = new User(currentDynamic.getString(PUBLISH_ID), currentDynamic.getString(PUBLISHER), BASE_URL + currentDynamic.getString(HEAD));
                 String publisherTime = currentDynamic.getString(PUBLISH_DATE);
                 String htmlContent = currentDynamic.getString(DYNAMIC_CONTENT);
+                String videoUrl = null;
                 Document doc = Jsoup.parse(htmlContent);
+                Elements videoIframe = doc.getElementsByTag("iframe");
+                if (videoIframe.size() > 0) {
+                    videoUrl = videoIframe.get(0).attr("src");
+                }
+
                 String textContent = doc.getElementById("TextContent").html();
                 long viewCount = currentDynamic.getLong(VIEW_COUNT);
                 List<String> imgArray = new ArrayList<>();
@@ -55,7 +63,7 @@ public class DynamicParse {
                         liker.add(new User(currentLiker.getString(LINKER_ID), currentLiker.getString(LINKER_NAME), BASE_URL + currentLiker.getString(HEAD)));
                     }
                 }
-                dynamicList.add(new Dynamic(id, author, publisherTime, textContent, htmlContent, imgArray, liker, viewCount));
+                dynamicList.add(new Dynamic(id, author, publisherTime, textContent, htmlContent, imgArray, liker, viewCount, videoUrl));
             }
         }catch (JSONException e){
             e.printStackTrace();

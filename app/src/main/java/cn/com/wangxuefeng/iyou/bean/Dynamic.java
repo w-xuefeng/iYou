@@ -8,6 +8,7 @@ public class Dynamic {
     private String publishTime;
     private String textContent;
     private String htmlContent;
+    private String videoUrl;
     private List<String> imgs;
     private List<User> liker;
     private long viewCount;
@@ -15,7 +16,7 @@ public class Dynamic {
     public Dynamic() {
     }
 
-    public Dynamic(int id, User author, String publishTime, String textContent, String htmlContent, List<String> imgs, List<User> liker, long viewCount) {
+    public Dynamic(int id, User author, String publishTime, String textContent, String htmlContent, List<String> imgs, List<User> liker, long viewCount, String videoUrl) {
         this.id = id;
         this.author = author;
         this.publishTime = publishTime;
@@ -24,6 +25,7 @@ public class Dynamic {
         this.imgs = imgs;
         this.liker = liker;
         this.viewCount = viewCount;
+        this.videoUrl = videoUrl;
     }
 
     public int getId() {
@@ -64,6 +66,15 @@ public class Dynamic {
 
     public void setImgs(List<String> imgs) {
         this.imgs = imgs;
+    }
+
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 
     public List<User> getLiker() {
